@@ -4,104 +4,130 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Untuk Naila</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      padding: 0;
-      background: radial-gradient(ellipse at top, #0f0c29, #302b63, #24243e);
-      color: white;
+      background: #1e1e2f;
       font-family: 'Quicksand', sans-serif;
-      overflow: hidden;
+      color: white;
+      overflow-x: hidden;
     }
 
-    .container {
+    .intro {
       text-align: center;
-      padding: 100px 20px;
-      z-index: 1;
-      position: relative;
-    }
-
-    h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3em;
-      margin-bottom: 30px;
+      padding: 100px 20px 40px;
+      font-size: 1.8em;
       opacity: 0;
-      animation: fadeInDown 2s ease-in-out forwards;
+      animation: fadeIn 3s forwards;
     }
 
-    p {
-      font-size: 1.2em;
-      margin: 20px 0;
-      opacity: 0;
-      animation: fadeInUp 1.5s ease-in-out forwards;
+    .chat {
+      max-width: 400px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    p:nth-child(2) { animation-delay: 2s; }
-    p:nth-child(3) { animation-delay: 4s; }
-    p:nth-child(4) { animation-delay: 6s; }
-    p:nth-child(5) { animation-delay: 8s; }
+    .bubble {
+      padding: 10px 15px;
+      border-radius: 20px;
+      max-width: 80%;
+      animation: slideIn 0.5s forwards;
+    }
 
-    @keyframes fadeInDown {
-      from { transform: translateY(-50px); opacity: 0; }
+    .me {
+      background: #4b6cb7;
+      align-self: flex-end;
+    }
+
+    .them {
+      background: #3e3e50;
+      align-self: flex-start;
+    }
+
+    .memory {
+      text-align: center;
+      margin: 40px auto;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .memory img {
+      width: 80%;
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #000;
+      margin-bottom: 10px;
+    }
+
+    .reply-button {
+      display: block;
+      margin: 40px auto;
+      padding: 15px 30px;
+      background: #ff4081;
+      border: none;
+      border-radius: 25px;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .reply-button:hover {
+      background: #ff1a60;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.8em;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(20px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes fadeInUp {
-      from { transform: translateY(50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    /* Star particles */
-    .stars {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .stars span {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 2s infinite ease-in-out;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <div class="stars" id="stars"></div>
-  <div class="container">
-    <h1>Untuk Naila</h1>
-    <p>Aku nggak nyesel pernah sayang kamu...</p>
-    <p>Yang aku sesalin, kenapa aku terlalu tulus sama yang cuma main-main.</p>
-    <p>Tapi yaudah, mungkin emang bukan kamu orangnya.</p>
-    <p>Semoga kamu bahagia, meski bukan denganku.</p>
+
+  <div class="intro">  
+    Aku gak nyesel pernah sayang kamu...  
+    <br>Yang aku sesalin, kenapa segininya ke orang yang cuma pura-pura butuh.
   </div>
+
+  <div class="chat">
+    <div class="bubble me">Aku kangen, kamu gak kangen?</div>
+    <div class="bubble them">...</div>
+    <div class="bubble me">Udah makan belum? jangan lupa jaga diri ya</div>
+    <div class="bubble them">iya</div>
+    <div class="bubble me">Masih ada aku loh, kalau butuh apa-apa...</div>
+    <div class="bubble them">aku baik2 aja kok</div>
+    <div class="bubble me">Oh... yaudah. Maaf ya ganggu</div>
+  </div>
+
+  <div class="memory">
+    <img src="https://i.ibb.co/gvFGLmj/memory.jpg" alt="Kenangan">
+    <div>Inget foto ini? Di sinilah aku mikir kita bisa selamanya...</div>
+  </div>
+
+  <button class="reply-button" onclick="alert('Menunggu... Tapi nggak pernah dibalas.')">
+    Kirim Balasan
+  </button>
+
+  <div class="footer">© Untuk kamu yang pernah aku jaga</div>
 
   <audio autoplay loop>
     <source src="https://dl.sndup.net/qt59/lagugalau.mp3" type="audio/mp3">
-    Browser kamu nggak mendukung audio.
+    Browser tidak mendukung audio.
   </audio>
 
-  <script>
-    // Generate bintang
-    const starsContainer = document.getElementById('stars');
-    for (let i = 0; i < 100; i++) {
-      const star = document.createElement('span');
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.top = Math.random() * 100 + 'vh';
-      star.style.animationDuration = (Math.random() * 2 + 1) + 's';
-      starsContainer.appendChild(star);
-    }
-  </script>
 </body>
 </html>
