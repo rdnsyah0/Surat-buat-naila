@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kenangan Kita</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #1e1e30, #3e3e5e);
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    p {
+      font-size: 1.3em;
+      max-width: 600px;
+      margin: 20px auto;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .memory {
+      margin-top: 40px;
+      font-style: italic;
+      opacity: 0;
+      animation: fadeIn 4s ease-in-out forwards;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatUp 6s infinite;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    .gallery {
+      margin: 30px auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .gallery img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+    }
+
+    .reply-btn {
+      margin-top: 40px;
+      padding: 15px 30px;
+      font-size: 1em;
+      background: #ff5c8a;
+      border: none;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 92, 138, 0.5);
+      transition: background 0.3s ease;
+    }
+
+    .reply-btn:hover {
+      background: #ff3366;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatUp {
+      0% { bottom: -20px; opacity: 0; }
+      50% { opacity: 1; }
+      100% { bottom: 100%; opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://your-link-to-music-file.mp3" type="audio/mpeg">
+    Browsermu tidak mendukung audio.
+  </audio>
+
+  <div class="container">
+    <h1>Kenangan Kita</h1>
+    <p>Dulu kita pernah tertawa di tempat yang sama. Kini aku hanya bisa mengenangnya dari kejauhan.</p>
+    <div class="memory" id="memoryText">"Masih ingat waktu kita saling kirim foto lucu sebelum tidur?"</div>
+
+    <div class="gallery">
+      <img src="https://your-photo-link-1.jpg" alt="Kenangan 1">
+      <img src="https://your-photo-link-2.jpg" alt="Kenangan 2">
+      <img src="https://your-photo-link-3.jpg" alt="Kenangan 3">
+    </div>
+
+    <button class="reply-btn" onclick="alert('Sayang, kalau kamu baca ini... balas aku ya.')">Kirim Balasan</button>
+  </div>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHeart, 500);
+
+    const memories = [
+      '"Masih ingat waktu kita saling kirim foto lucu sebelum tidur?"',
+      '"Waktu kita nyanyi bareng walau sama-sama fals..."',
+      '"Kamu pernah bilang, aku rumah kamu..."',
+      '"Kita pernah mimpi bareng, walau akhirnya beda jalan."'
+    ];
+
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % memories.length;
+      document.getElementById('memoryText').textContent = memories[index];
+    }, 6000);
+  </script>
+</body>
+</html>
