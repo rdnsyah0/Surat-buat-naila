@@ -1,63 +1,68 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kisah Si Bodoh yang Tulus</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gue & Rasa yang Gagal</title>
   <style>
-    body {
+    * {
       margin: 0;
-      background: linear-gradient(to right, #2c3e50, #4ca1af);
-      font-family: 'Poppins', sans-serif;
-      color: white;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(ellipse at center, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      height: 100vh;
       overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
 
-    .container {
+    .story {
       max-width: 600px;
-      margin: 0 auto;
-      padding: 50px 20px;
       text-align: center;
+      padding: 20px;
     }
 
-    .text {
-      font-size: 1.5rem;
+    .line {
+      font-size: 1.4rem;
       opacity: 0;
       transform: translateY(20px);
-      animation: fadeUp 1s forwards;
+      animation: showText 0.6s forwards;
+      margin-bottom: 20px;
     }
 
-    .text:not(:first-child) {
-      animation-delay: var(--delay);
-    }
-
-    @keyframes fadeUp {
+    @keyframes showText {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    .broken-heart {
+    .heart {
       font-size: 4rem;
+      animation: beat 1s infinite alternate;
       margin-top: 20px;
-      animation: pulse 1s infinite alternate;
     }
 
-    @keyframes pulse {
+    @keyframes beat {
       to {
         transform: scale(1.1);
       }
     }
 
-    .end {
-      margin-top: 50px;
-      font-weight: 600;
-      font-size: 2rem;
+    .final {
+      margin-top: 30px;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ffdddd;
       opacity: 0;
       animation: fadeIn 2s forwards;
-      animation-delay: 10s;
     }
 
     @keyframes fadeIn {
@@ -68,47 +73,51 @@
   </style>
 </head>
 <body>
-  <div class="container" id="story">
-    <!-- Story akan muncul lewat JS -->
-  </div>
+  <div class="story" id="storyBox"></div>
+  <audio id="typeSound" src="https://www.myinstants.com/media/sounds/keyboard-2.mp3"></audio>
 
   <script>
     const texts = [
-      "Dulu... gue cuma cowo biasa.",
-      "Nggak ganteng, nggak kaya, tapi sayangnya asli.",
-      "Ada satu cewek, yang gue kira 'dia'.",
-      "Gue kasih semuanya. Waktu, tenaga, bahkan hati.",
-      "Gue pikir dia beneran sama gue...",
-      "Ternyata? Dia malah main belakang.",
-      "Senyumnya ke gue, tapi pelukannya ke dia.",
-      "Sakit? Banget.",
-      "Tapi yasudah. Gue nggak nyesel pernah tulus.",
-      "Karena cinta sejati itu, bukan tentang dibales...",
-      "Tapi tentang pernah berani ngerasa sejauh ini.",
+      "Awalnya, gue cuma mau nyoba tulus...",
+      "Gue pikir, kalau gue serius, dia bakal sadar...",
+      "Tiap malem gue temenin dia cerita soal hidupnya.",
+      "Gue ada pas dia butuh sandaran.",
+      "Tapi ternyata... gue cuma cadangan.",
+      "Dia bilang 'sayang', tapi nyatanya ke orang lain.",
+      "Sakit? Ya jelas.",
+      "Gue nggak marah, cuma kecewa.",
+      "Kecewa karena gue berharap ke orang yang salah.",
+      "Tapi gapapa, dari semua luka ini...",
+      "Gue belajar: jangan berharap lebih ke yang cuma anggap kita pelarian."
     ];
 
-    const container = document.getElementById("story");
+    const storyBox = document.getElementById("storyBox");
+    const typeSound = document.getElementById("typeSound");
 
-    texts.forEach((line, index) => {
-      const div = document.createElement("div");
-      div.className = "text";
-      div.style.setProperty('--delay', `${index * 1.2}s`);
-      div.textContent = line;
-      container.appendChild(div);
+    texts.forEach((text, i) => {
+      setTimeout(() => {
+        const div = document.createElement('div');
+        div.className = 'line';
+        div.style.animationDelay = '0s';
+        div.textContent = text;
+        storyBox.appendChild(div);
+        typeSound.play();
+      }, i * 1800);
     });
 
-    // Tambah animasi akhir
     setTimeout(() => {
-      const heart = document.createElement("div");
-      heart.className = "broken-heart";
-      heart.innerHTML = "💔";
-      container.appendChild(heart);
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = '💔';
+      storyBox.appendChild(heart);
+    }, texts.length * 1800 + 500);
 
-      const end = document.createElement("div");
-      end.className = "end";
-      end.textContent = "Semoga kamu bahagia, meski bukan sama aku.";
-      container.appendChild(end);
-    }, texts.length * 1200);
+    setTimeout(() => {
+      const final = document.createElement('div');
+      final.className = 'final';
+      final.textContent = 'Semoga lo bahagia, walau bukan sama gue.';
+      storyBox.appendChild(final);
+    }, texts.length * 1800 + 2500);
   </script>
 </body>
 </html>
